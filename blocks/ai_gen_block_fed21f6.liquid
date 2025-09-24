@@ -1,0 +1,652 @@
+{% doc %}
+  @prompt
+    hero section with search
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-search-{{ ai_gen_id }} {
+    position: relative;
+    min-height: {{ block.settings.section_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+    overflow: hidden;
+  }
+
+  .ai-hero-search-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .ai-hero-search-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    text-align: {{ block.settings.text_alignment }};
+    max-width: {{ block.settings.content_width }}px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .ai-hero-search-heading-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    margin: 0 0 {{ block.settings.spacing_between_elements }}px;
+    line-height: 1.2;
+  }
+
+  .ai-hero-search-subheading-{{ ai_gen_id }} {
+    color: {{ block.settings.subheading_color }};
+    font-size: {{ block.settings.subheading_size }}px;
+    margin: 0 0 {{ block.settings.spacing_between_elements }}px;
+    line-height: 1.4;
+  }
+
+  .ai-hero-search-form-wrapper-{{ ai_gen_id }} {
+    max-width: {{ block.settings.search_width }}px;
+    margin: 0 auto {{ block.settings.spacing_between_elements }}px;
+  }
+
+  .ai-hero-search-form-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    background-color: {{ block.settings.search_background_color }};
+    border-radius: {{ block.settings.search_border_radius }}px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .ai-hero-search-input-{{ ai_gen_id }} {
+    flex: 1;
+    padding: {{ block.settings.search_padding }}px 20px;
+    border: none;
+    background: transparent;
+    color: {{ block.settings.search_text_color }};
+    font-size: {{ block.settings.search_text_size }}px;
+    outline: none;
+  }
+
+  .ai-hero-search-input-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.search_placeholder_color }};
+  }
+
+  .ai-hero-search-button-{{ ai_gen_id }} {
+    padding: {{ block.settings.search_padding }}px 24px;
+    background-color: {{ block.settings.search_button_color }};
+    color: {{ block.settings.search_button_text_color }};
+    border: none;
+    cursor: pointer;
+    font-size: {{ block.settings.search_text_size }}px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-hero-search-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.search_button_hover_color }};
+  }
+
+  .ai-hero-search-button-icon-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ai-hero-search-cta-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.spacing_between_elements }}px;
+  }
+
+  .ai-hero-search-cta-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background-color: {{ block.settings.cta_button_color }};
+    color: {{ block.settings.cta_button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.cta_button_border_radius }}px;
+    font-weight: 600;
+    font-size: {{ block.settings.cta_button_text_size }}px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .ai-hero-search-cta-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_button_hover_color }};
+    color: {{ block.settings.cta_button_hover_text_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-hero-search-suggestions-{{ ai_gen_id }} {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: {{ block.settings.text_alignment }};
+  }
+
+  .ai-hero-search-suggestion-{{ ai_gen_id }} {
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: {{ block.settings.heading_color }};
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .ai-hero-search-suggestion-{{ ai_gen_id }}:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-hero-search-{{ ai_gen_id }} {
+      min-height: {{ block.settings.mobile_section_height }}px;
+      padding: 40px 0;
+    }
+
+    .ai-hero-search-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+    }
+
+    .ai-hero-search-subheading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.subheading_size | times: 0.9 }}px;
+    }
+
+    .ai-hero-search-form-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .ai-hero-search-button-{{ ai_gen_id }} {
+      justify-content: center;
+    }
+
+    .ai-hero-search-suggestions-{{ ai_gen_id }} {
+      justify-content: center;
+    }
+  }
+{% endstyle %}
+
+<hero-search-{{ ai_gen_id }}
+  class="ai-hero-search-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.overlay_opacity > 0 %}
+    <div class="ai-hero-search-overlay-{{ ai_gen_id }}"></div>
+  {% endif %}
+
+  <div class="ai-hero-search-content-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h1 class="ai-hero-search-heading-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h1>
+    {% endif %}
+
+    {% if block.settings.subheading != blank %}
+      <div class="ai-hero-search-subheading-{{ ai_gen_id }}">
+        {{ block.settings.subheading }}
+      </div>
+    {% endif %}
+
+    <div class="ai-hero-search-form-wrapper-{{ ai_gen_id }}">
+      <form
+        action="{{ routes.search_url }}"
+        method="get"
+        class="ai-hero-search-form-{{ ai_gen_id }}"
+        role="search"
+      >
+        <input
+          type="search"
+          name="q"
+          class="ai-hero-search-input-{{ ai_gen_id }}"
+          placeholder="{{ block.settings.search_placeholder }}"
+          value="{{ search.terms | escape }}"
+          aria-label="Search products"
+          autocomplete="off"
+        >
+        <button
+          type="submit"
+          class="ai-hero-search-button-{{ ai_gen_id }}"
+          aria-label="Search"
+        >
+          <svg
+            class="ai-hero-search-button-icon-{{ ai_gen_id }}"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+          {{ block.settings.search_button_text }}
+        </button>
+      </form>
+    </div>
+
+    {% if block.settings.show_search_suggestions and block.settings.search_suggestions != blank %}
+      <div class="ai-hero-search-suggestions-{{ ai_gen_id }}">
+        {% assign suggestions = block.settings.search_suggestions | split: ',' %}
+        {% for suggestion in suggestions limit: 6 %}
+          {% assign suggestion_trimmed = suggestion | strip %}
+          {% if suggestion_trimmed != blank %}
+            <a
+              href="{{ routes.search_url }}?q={{ suggestion_trimmed | url_encode }}"
+              class="ai-hero-search-suggestion-{{ ai_gen_id }}"
+            >
+              {{ suggestion_trimmed }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_cta_button and block.settings.cta_button_text != blank %}
+      <div class="ai-hero-search-cta-{{ ai_gen_id }}">
+        <a
+          href="{{ block.settings.cta_button_link }}"
+          class="ai-hero-search-cta-button-{{ ai_gen_id }}"
+        >
+          {{ block.settings.cta_button_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</hero-search-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class HeroSearch{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.searchForm = this.querySelector('.ai-hero-search-form-{{ ai_gen_id }}');
+        this.searchInput = this.querySelector('.ai-hero-search-input-{{ ai_gen_id }}');
+        this.suggestions = this.querySelectorAll('.ai-hero-search-suggestion-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        if (this.suggestions.length > 0) {
+          this.suggestions.forEach(suggestion => {
+            suggestion.addEventListener('click', (e) => {
+              e.preventDefault();
+              const searchTerm = suggestion.textContent.trim();
+              this.searchInput.value = searchTerm;
+              this.searchForm.submit();
+            });
+          });
+        }
+
+        this.searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.searchForm.submit();
+          }
+        });
+      }
+    }
+
+    customElements.define('hero-search-{{ ai_gen_id }}', HeroSearch{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero with search",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 400,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_height",
+      "min": 300,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Content width",
+      "default": 700
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "spacing_between_elements",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Spacing between elements",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#6d388b"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Find Your Perfect Product</p>"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Discover amazing products with our powerful search</p>"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading size",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Search bar"
+    },
+    {
+      "type": "range",
+      "id": "search_width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Search bar width",
+      "default": 500
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder text",
+      "default": "Search for products..."
+    },
+    {
+      "type": "text",
+      "id": "search_button_text",
+      "label": "Search button text",
+      "default": "Search"
+    },
+    {
+      "type": "color",
+      "id": "search_background_color",
+      "label": "Search background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "search_text_color",
+      "label": "Search text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "search_placeholder_color",
+      "label": "Search placeholder color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "search_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Search text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "search_padding",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Search padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "search_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Search border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "search_button_color",
+      "label": "Search button color",
+      "default": "#6d388b"
+    },
+    {
+      "type": "color",
+      "id": "search_button_hover_color",
+      "label": "Search button hover color",
+      "default": "#5a2d73"
+    },
+    {
+      "type": "color",
+      "id": "search_button_text_color",
+      "label": "Search button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Search suggestions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_suggestions",
+      "label": "Show search suggestions",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_suggestions",
+      "label": "Search suggestions",
+      "default": "trending, new arrivals, bestsellers, sale",
+      "info": "Separate suggestions with commas"
+    },
+    {
+      "type": "header",
+      "content": "Call to action button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta_button",
+      "label": "Show call to action button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "Button text",
+      "default": "Shop All Products"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_color",
+      "label": "Button color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_color",
+      "label": "Button hover color",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_text_color",
+      "label": "Button text color",
+      "default": "#6d388b"
+    },
+    {
+      "type": "color",
+      "id": "cta_button_hover_text_color",
+      "label": "Button hover text color",
+      "default": "#5a2d73"
+    },
+    {
+      "type": "range",
+      "id": "cta_button_text_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero with search"
+    }
+  ]
+}
+{% endschema %}
