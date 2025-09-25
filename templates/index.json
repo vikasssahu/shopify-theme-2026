@@ -393,7 +393,7 @@
             "icon": "verified",
             "filled_icon": true,
             "title": "Genuine Products",
-            "text": "<p>100% authentic electronics with manufacturer warranty and quality assurance<p>"
+            "text": "<p>100% authentic electronics with manufacturer warranty and quality assurance</p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-2": {
@@ -402,7 +402,7 @@
             "icon": "local_shipping",
             "filled_icon": true,
             "title": "Fast Delivery",
-            "text": "<p>Express shipping across India with secure packaging and tracking<p>"
+            "text": "<p>Express shipping across India with secure packaging and tracking</p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-3": {
@@ -411,7 +411,7 @@
             "icon": "support_agent",
             "filled_icon": true,
             "title": "Expert Support",
-            "text": "<p>24/7 technical assistance from certified professionals<p>"
+            "text": "<p>24/7 technical assistance from certified professionals</p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-4": {
@@ -420,7 +420,7 @@
             "icon": "price_check",
             "filled_icon": true,
             "title": "Best Prices",
-            "text": "<p>Competitive pricing with price match guarantee and exclusive deals<p>"
+            "text": "<p>Competitive pricing with price match guarantee and exclusive deals</p>"
           }
         }
       },
@@ -436,7 +436,7 @@
         "title": "Why Choose Saudewala",
         "title_highlight_color": "#667eea",
         "heading_size": "h1",
-        "text": "Your trusted partner for premium electronics and technology products",
+        "text": "<p>Your trusted partner for premium electronics and technology products</p>",
         "color_scheme": "background-1",
         "icon_layout": "vertical",
         "icon_size": "medium",
