@@ -1,28 +1,171 @@
 {
   "sections": {
-    "cfca4268-6358-426c-98ab-d292aeef11e5": {
-      "type": "slideshow",
+    "promo_banner_main": {
+      "type": "promo-banner",
       "settings": {
-        "visibility": "always-display",
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "dots",
-        "desktop_pagination_position": "over",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "show_text_below": true,
-        "mobile_pagination_position": "under",
-        "accessibility_info": "Slideshow about our brand"
+        "heading": "🚀 New Year Electronics Sale - Up to 60% Off!",
+        "description": "Premium smartphones, laptops, gaming gear & more at unbeatable prices",
+        "button_text": "Shop Sale",
+        "button_url": "/collections/sale",
+        "show_timer": true,
+        "end_date": "2024-12-31 23:59:59",
+        "show_close_button": true
+      }
+    },
+    "saudewala_hero_main": {
+      "type": "saudewala-hero",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "verified",
+            "title": "Authentic Products",
+            "description": "100% genuine electronics with warranty"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "local_shipping",
+            "title": "Fast Delivery",
+            "description": "Quick shipping across India"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "support_agent",
+            "title": "Expert Support",
+            "description": "24/7 technical assistance"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "price_check",
+            "title": "Best Prices",
+            "description": "Competitive pricing guaranteed"
+          }
+        }
+      },
+      "block_order": ["feature_1", "feature_2", "feature_3", "feature_4"],
+      "settings": {
+        "heading": "Premium Electronics & Technology",
+        "description": "Discover the latest smartphones, laptops, gaming gear, and smart home devices. Quality products with unbeatable prices and expert support.",
+        "button_1_text": "Shop Electronics",
+        "button_1_url": "/collections/all",
+        "button_2_text": "View Categories",
+        "button_2_url": "#categories"
+      }
+    },
+    "electronics_showcase_main": {
+      "type": "electronics-showcase",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "category": "Smartphones",
+            "title": "iPhone 15 Pro Max",
+            "specs": "6.7-inch display, 256GB storage, A17 Pro chip, Titanium design",
+            "current_price": "159900",
+            "original_price": "164900",
+            "rating": 5,
+            "rating_count": 342,
+            "badge_text": "New",
+            "badge_type": "new"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "category": "Laptops",
+            "title": "MacBook Pro 14-inch M3",
+            "specs": "14-inch Liquid Retina XDR, 16GB RAM, 512GB SSD, M3 Pro chip",
+            "current_price": "199900",
+            "original_price": "209900",
+            "rating": 5,
+            "rating_count": 189,
+            "badge_text": "Sale",
+            "badge_type": "sale"
+          }
+        },
+        "product_3": {
+          "type": "product",
+          "settings": {
+            "category": "Gaming",
+            "title": "PlayStation 5 Slim",
+            "specs": "1TB SSD, Ray tracing, 3D audio, DualSense wireless controller",
+            "current_price": "54990",
+            "rating": 5,
+            "rating_count": 567,
+            "badge_text": "Popular",
+            "badge_type": "default"
+          }
+        },
+        "product_4": {
+          "type": "product",
+          "settings": {
+            "category": "Audio",
+            "title": "AirPods Pro (2nd Gen)",
+            "specs": "Active noise cancellation, Spatial audio, Up to 30 hours battery",
+            "current_price": "26900",
+            "original_price": "29900",
+            "rating": 4,
+            "rating_count": 423,
+            "badge_text": "Sale",
+            "badge_type": "sale"
+          }
+        },
+        "product_5": {
+          "type": "product",
+          "settings": {
+            "category": "Smart Home",
+            "title": "Echo Dot (5th Gen)",
+            "specs": "Improved audio, Alexa built-in, Smart home hub, Bluetooth connectivity",
+            "current_price": "4499",
+            "original_price": "5499",
+            "rating": 4,
+            "rating_count": 892,
+            "badge_text": "Sale",
+            "badge_type": "sale"
+          }
+        },
+        "product_6": {
+          "type": "product",
+          "settings": {
+            "category": "Tablets",
+            "title": "iPad Pro 12.9-inch",
+            "specs": "12.9-inch Liquid Retina XDR, M2 chip, 128GB, Wi-Fi",
+            "current_price": "112900",
+            "rating": 5,
+            "rating_count": 234,
+            "badge_text": "New",
+            "badge_type": "new"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3",
+        "product_4",
+        "product_5",
+        "product_6"
+      ],
+      "settings": {
+        "heading": "Featured Electronics",
+        "description": "Discover our handpicked selection of premium electronics and technology products with the best deals"
       }
     },
     "1758704004fdbf10ac": {
       "type": "_blocks",
+      "custom_css": ["#categories { scroll-margin-top: 80px; }"],
       "blocks": {
         "ai_gen_block_125cc85_eHUrKA": {
           "type": "ai_gen_block_125cc85",
           "settings": {
-            "heading": "Explore Refurbished Tech",
-            "subtitle": "",
+            "heading": "Shop Premium Electronics",
+            "subtitle": "Discover the latest in technology and electronics",
             "text_alignment": "center",
             "heading_size": 32,
             "subtitle_size": 16,
@@ -50,23 +193,23 @@
             "title_spacing": 12,
             "grid_spacing": 0,
             "category_1_enabled": true,
-            "category_1_name": "Laptops",
-            "category_1_link": "",
+            "category_1_name": "Laptops & PCs",
+            "category_1_link": "/collections/laptops",
             "category_2_enabled": true,
-            "category_2_name": "Desktops",
-            "category_2_link": "",
+            "category_2_name": "Smartphones",
+            "category_2_link": "/collections/smartphones",
             "category_3_enabled": true,
-            "category_3_name": "Mini PC",
-            "category_3_link": "",
+            "category_3_name": "Gaming",
+            "category_3_link": "/collections/gaming",
             "category_4_enabled": true,
-            "category_4_name": "Convertible",
-            "category_4_link": "",
+            "category_4_name": "Audio & Video",
+            "category_4_link": "/collections/audio-video",
             "category_5_enabled": true,
-            "category_5_name": "ChromeBook",
-            "category_5_link": "",
+            "category_5_name": "Smart Home",
+            "category_5_link": "/collections/smart-home",
             "category_6_enabled": true,
             "category_6_name": "Accessories",
-            "category_6_link": ""
+            "category_6_link": "/collections/accessories"
           },
           "blocks": {}
         }
@@ -173,43 +316,111 @@
         "custom_colors_others_text": "#2e2a39"
       }
     },
+    "brands_showcase_main": {
+      "type": "brands-showcase",
+      "blocks": {
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Apple"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Samsung"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Sony"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Dell"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "HP"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Lenovo"
+          }
+        },
+        "brand_7": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "LG"
+          }
+        },
+        "brand_8": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Xiaomi"
+          }
+        }
+      },
+      "block_order": [
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_6",
+        "brand_7",
+        "brand_8"
+      ],
+      "settings": {
+        "heading": "Trusted Electronics Brands",
+        "description": "We partner with the world's leading technology companies",
+        "display_style": "grid"
+      }
+    },
     "6aa09428-a417-429d-9159-a4e8afd49590": {
       "type": "icon-bar",
       "blocks": {
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-1": {
           "type": "column",
           "settings": {
-            "icon": "check_circle",
-            "filled_icon": false,
-            "title": "Icon",
-            "text": "<p>Pair text with an icon to focus on your chosen product, collection, or blog post<p>"
+            "icon": "verified",
+            "filled_icon": true,
+            "title": "Genuine Products",
+            "text": "<p>100% authentic electronics with manufacturer warranty and quality assurance<p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-2": {
           "type": "column",
           "settings": {
-            "icon": "check_circle",
-            "filled_icon": false,
-            "title": "Icon",
-            "text": "<p>Pair text with an icon to focus on your chosen product, collection, or blog post<p>"
+            "icon": "local_shipping",
+            "filled_icon": true,
+            "title": "Fast Delivery",
+            "text": "<p>Express shipping across India with secure packaging and tracking<p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-3": {
           "type": "column",
           "settings": {
-            "icon": "check_circle",
-            "filled_icon": false,
-            "title": "Icon",
-            "text": "<p>Pair text with an icon to focus on your chosen product, collection, or blog post<p>"
+            "icon": "support_agent",
+            "filled_icon": true,
+            "title": "Expert Support",
+            "text": "<p>24/7 technical assistance from certified professionals<p>"
           }
         },
         "template--21507361505575__6aa09428-a417-429d-9159-a4e8afd49590-column-4": {
           "type": "column",
           "settings": {
-            "icon": "check_circle",
-            "filled_icon": false,
-            "title": "Icon",
-            "text": "<p>Pair text with an icon to focus on your chosen product, collection, or blog post<p>"
+            "icon": "price_check",
+            "filled_icon": true,
+            "title": "Best Prices",
+            "text": "<p>Competitive pricing with price match guarantee and exclusive deals<p>"
           }
         }
       },
@@ -222,10 +433,10 @@
       "settings": {
         "display_id": false,
         "visibility": "always-display",
-        "title": "Icon bar",
-        "title_highlight_color": "#6d388b",
+        "title": "Why Choose Saudewala",
+        "title_highlight_color": "#667eea",
         "heading_size": "h1",
-        "text": "",
+        "text": "Your trusted partner for premium electronics and technology products",
         "color_scheme": "background-1",
         "icon_layout": "vertical",
         "icon_size": "medium",
@@ -407,10 +618,13 @@
     }
   },
   "order": [
-    "cfca4268-6358-426c-98ab-d292aeef11e5",
+    "promo_banner_main",
+    "saudewala_hero_main",
+    "electronics_showcase_main",
     "1758704004fdbf10ac",
-    "d2d3417b-e92f-428c-b221-5bceffb552be",
+    "brands_showcase_main",
     "6aa09428-a417-429d-9159-a4e8afd49590",
+    "d2d3417b-e92f-428c-b221-5bceffb552be",
     "0f1fc9e4-bc4c-4052-9747-62d1f8472caa",
     "contact_form_WHP8G7"
   ]
